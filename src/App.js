@@ -6,7 +6,19 @@ import BlazingComp from './components/BlazingComp';
 
 class App extends Component {
 
-  changeText = () => {
+  state = {
+    color: '#000'
+  }
+
+
+  changeStyle() {
+    fetch('http://www.colr.org/json/color/random')
+       .then(res => res.json())
+       .then(data => console.log(data.colors[0].hex));   
+          
+  }
+
+  changeInputText = () => {
     console.log('Text changed');
   }
  
@@ -18,8 +30,8 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-          <BlazingComp></BlazingComp>
-          <input type="text" onInput={this.changeText} />
+          <BlazingComp click={this.changeStyle}></BlazingComp>
+          <input type="text" onInput={this.changeInputText} />
       </div>
     );
   }
