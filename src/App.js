@@ -7,7 +7,8 @@ import BlazingComp from './components/BlazingComp';
 class App extends Component {
 
   state = {
-    color: '000'
+    color: '000',
+    value: ''
   }
 
 
@@ -18,8 +19,9 @@ class App extends Component {
           
   }
 
-  changeInputText = () => {
-    console.log('Text changed');
+  inputTextHandler(event) {
+    this.setState({value: event.target.value});
+    console.log(this.state.value);
   }
  
 
@@ -31,7 +33,7 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
           <BlazingComp click={this.changeStyle}></BlazingComp>
-          <input type="text" onInput={this.changeInputText} />
+          <input type="text" value={this.state.value} onChange={this.inputTextHandler.bind(this)} />
       </div>
     );
   }
