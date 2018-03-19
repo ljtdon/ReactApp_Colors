@@ -1,15 +1,13 @@
-import React, { Component } from 'react'
+import React from 'react';
 
-class BlazingComp extends Component {
+const blazingComp = (props) => {
 
-	render() {
+	
 		return (
 		<div>
 			<h1>New Comp BlazingComp</h1>
 		</div>
-		)
-	}
-
+		);
 }
 
-export default BlazingComp;
+export default blazingComp;

@@ -5,6 +5,12 @@ import BlazingComp from './components/BlazingComp';
 
 
 class App extends Component {
+
+  changeText = () => {
+    console.log('Text changed');
+  }
+ 
+
   render() {
     return (
       <div className="App">
@@ -13,6 +19,7 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
           <BlazingComp></BlazingComp>
+          <input type="text" onInput={this.changeText} />
       </div>
     );
   }
