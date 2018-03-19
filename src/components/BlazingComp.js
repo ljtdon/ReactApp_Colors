@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class BlazingComp extend Component {
+class BlazingComp extends Component {
 
 	render() {
 		return (
