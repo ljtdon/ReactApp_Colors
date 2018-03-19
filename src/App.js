@@ -7,14 +7,14 @@ import BlazingComp from './components/BlazingComp';
 class App extends Component {
 
   state = {
-    color: '#000'
+    color: '000'
   }
 
 
-  changeStyle() {
+  changeStyle = () => {
     fetch('http://www.colr.org/json/color/random')
        .then(res => res.json())
-       .then(data => console.log(data.colors[0].hex));   
+       .then(data => this.setState({color: 'data.colors[0].hex'}));  
           
   }
 
