@@ -7,6 +7,7 @@ import BlazingComp from './components/BlazingComp';
 class App extends Component {
 
   state = {
+    content: 'BlazingComp',
     color: '000',
     value: ''
   }
@@ -32,7 +33,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-          <BlazingComp click={this.changeStyle}></BlazingComp>
+          <BlazingComp content={this.state.content} click={this.changeStyle}></BlazingComp>
           <input type="text" value={this.state.value} onChange={this.inputTextHandler.bind(this)} />
       </div>
     );
