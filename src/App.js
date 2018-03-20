@@ -12,19 +12,20 @@ class App extends Component {
     value: ''
   }
 
+  changeContent = (event) => {
+    this.setState({
+      content: event.target.value
+    });
+  }
+ 
+
 
   changeStyle = () => {
     fetch('http://www.colr.org/json/color/random')
        .then(res => res.json())
-       .then(data => this.setState({color: 'data.colors[0].hex'}));  
-          
+       .then(data => this.setState({color: 'data.colors[0].hex'}));            
   }
-
-  inputTextHandler(event) {
-    this.setState({value: event.target.value});
-    console.log(this.state.value);
-  }
- 
+  
 
   render() {
     return (
@@ -33,8 +34,14 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-          <BlazingComp content={this.state.content} click={this.changeStyle}></BlazingComp>
-          <input type="text" value={this.state.value} onChange={this.inputTextHandler.bind(this)} />
+
+
+         <BlazingComp 
+           content={this.state.content}
+           newContent={this.changeContent}
+           click={this.changeStyle}></BlazingComp>
+          
+          
       </div>
     );
   }
