@@ -7,9 +7,8 @@ import BlazingComp from './components/BlazingComp';
 class App extends Component {
 
   state = {
-    content: 'BlazingComp',
-    color: '000',
-    value: ''
+    content: 'Text from Component',
+    color: '000'   
   }
 
   changeContent = (event) => {
@@ -37,11 +36,10 @@ class App extends Component {
 
 
          <BlazingComp 
-           content={this.state.content}
-           newContent={this.changeContent}
+           content={this.state.content}           
            click={this.changeStyle}></BlazingComp>
           
-          
+          <input type="text" onChange={this.changeContent} />
       </div>
     );
   }
