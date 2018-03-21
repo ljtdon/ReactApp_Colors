@@ -8,7 +8,9 @@ class App extends Component {
 
   state = {
     content: 'Text from Component',
-    color: '000'   
+    style: {
+      color: 'red'
+    }   
   }
 
   changeContent = (event) => {
@@ -20,9 +22,22 @@ class App extends Component {
 
 
   changeStyle = () => {
-    fetch('http://www.colr.org/json/color/random')
-       .then(res => res.json())
-       .then(data => this.setState({color: 'data.colors[0].hex'}));            
+    fetch('http://www.colr.org/json/color/random')     
+        .then(res => res.json())         
+        .then(data => this.getColor(data.colors[0].hex));
+
+
+    this.getColor = (color) => {
+        color = '#'.concat(color.toString());
+        console.log(color);
+
+        this.setState({
+          content: ' Fetched content',
+          style: {      
+            backgroundColor: color            
+          }    
+        });
+     }    
   }
   
 
@@ -36,7 +51,8 @@ class App extends Component {
 
 
          <BlazingComp 
-           content={this.state.content}           
+           content={this.state.content}
+           style={this.state.style}           
            click={this.changeStyle}></BlazingComp>
           
           <input type="text" onChange={this.changeContent} />

@@ -5,7 +5,7 @@ const blazingComp = (props) => {
 	
 		return (
 		<div>
-			<h1 onClick={props.click}>{props.content}</h1>								
+			<h1 style={props.style} onClick={props.click}>{props.content}</h1>								
 		</div>
 		);
 }
