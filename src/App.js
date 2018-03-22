@@ -27,19 +27,25 @@ class App extends Component {
   changeStyle = () => {
 
     this.switcher = !this.switcher;
-    
+
     if(this.switcher){
 
+    
       // Fetch color
       fetch('http://www.colr.org/json/color/random')     
       .then(res => res.json())         
       .then(data => this.getColor(data.colors[0].hex));
 
-      // Adjusting color and change state
+    
+
+      // get color
+
       this.getColor = (color) => {
-          if(color==='') {
+                    
+          if(color === '') {
             console.log(color);
-            this.changeStyle();
+            alert('Kliknuti ponovno');
+            
           }
           else {            
             color = '#'.concat(color.toString());
@@ -49,9 +55,11 @@ class App extends Component {
                 color: color            
             }    
           });
-          }
+          }    
          
       } 
+      
+
     }      
     else {
       this.setState({          
@@ -59,10 +67,10 @@ class App extends Component {
           color: '#000'           
         }    
       });
-    } 
-    
+    }  
     
   }
+  
 
 
 render() {
