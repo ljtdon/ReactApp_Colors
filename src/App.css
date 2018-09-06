@@ -10,23 +10,71 @@
 .App-header {
   background-color: #222;
   height: 150px;
-  padding: 20px;
-  color: white;
+  padding: 20px;  
+  font-size: 1.8rem;
+  color: #fff; 
 }
 
-.App-title {
-  font-size: 1.5em;
-}
-
+/* 
 .App-intro {
   font-size: large;
-}
+} */
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
 
-.blazingComp {
-  color: red;
+
+.Header-comp {     
+  margin-top: 20px;
+}
+
+.History-colors {
+  font-size: 1.4rem;
+  display: inline-block;
+  padding: 0.8rem;
+  border-radius: 0.6rem;
+  margin-bottom: 0.8rem;   
+}
+
+.Colors {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 2rem;  
+  justify-content: center;   
+}
+
+.Color-square {
+  padding: 1.6rem;
+  margin: 0.5rem;
+  border-radius: 0.6rem;
+  position: relative;
+}
+
+.Btn-section {  
+  padding-bottom: 2rem;
+}
+
+.Btn {
+  padding: 1rem; 
+  background-color: greenyellow;  
+}
+
+.Btn:first-child {
+  margin-right: 1rem;
+}
+
+.Welcome {
+  padding: 3rem 0;    
+  font-size: 1.6rem;
+}
+
+
+.Welcome-input {
+  display: block;
+  margin: 0 auto;
+  padding: 0.4rem;
+  margin-top: 1.4rem;
+  font-size: 1rem;
 }
