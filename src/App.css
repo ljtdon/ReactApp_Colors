@@ -28,6 +28,7 @@
 
 .Header-comp {     
   margin-top: 20px;
+  text-shadow: 2px 2px 8px #000;
 }
 
 .History-colors {
@@ -48,8 +49,7 @@
 .Color-square {
   padding: 1.6rem;
   margin: 0.5rem;
-  border-radius: 0.6rem;
-  position: relative;
+  border-radius: 0.6rem;  
 }
 
 .Btn-section {  
@@ -63,6 +63,10 @@
 
 .Btn:first-child {
   margin-right: 1rem;
+}
+
+.Btn-hidden {
+  display: none;
 }
 
 .Welcome {

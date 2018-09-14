@@ -12,9 +12,10 @@ class App extends Component {
     style: {
       backgroundColor: 'plum'
     },
-    historyColors: ["#f1067f", "#94e721", "#334466", "#7d9dda", "#bbaa94"],
-    name: '',
-    selectedColor: {id: null, color: null}
+    historyColors: ["#f1067f", "#94e721", "#334466", "#7d9dda", "#bbaa94", "#a3287b"], 
+    selectedColor: {id: null, color: null},
+    classColor: ['Btn'],
+    name: ''
   }
 
   
@@ -36,51 +37,48 @@ class App extends Component {
         console.log('catch error');
         console.log(color);         
        
-      });          
+      });  
     }
 
     // Method get color
 
     getColorData = (data) => { 
       let color = '#'.concat(data.hex);     
-      // console.log(color);  
-
-       if (color === '#') {                   
-          
-        // console.log('unutar if');           
-        color = this.getRandomColor();
-        
-       }
-      //  console.log('izvan if');  
-       this.stateUpColor(color);
-      //  console.log(color);  
-       return color;      
+      
+      if (color === '#') {                 
+        color = this.getRandomColor();        
+      }
+      
+      this.stateUpColor(color);
+     
+      return color;      
     }          
 
-    // Changing state
+    // Applying new color, and adding to history
 
     stateUpColor = (color) => {
-      // console.log('state color'); 
-      // console.log(color); 
+  
+      const newColors = this.state.historyColors.concat(color);       
 
-      // const newColors = this.state.historyColors; 
-      // newColors.push(color:color);
-
-      const newColors = this.state.historyColors.concat(color);
-
-
-      this.setState({          
-        style: {      
-          backgroundColor: color            
-        },       
-        historyColors: newColors
-      });    
-      
-      // console.log(this.state.style); 
-      // console.log(this.state.historyColors);
-      
-
+      if(newColors.length !== 0) {       
+        this.setState({
+          classColor: ['Btn'],
+          style: {      
+              backgroundColor: color            
+            },       
+          historyColors: newColors
+        });
+      } 
+      else {
+         this.setState({          
+            style: {      
+              backgroundColor: color            
+            },       
+            historyColors: newColors
+        });    
+      }          
     }
+
     // Generate random color
     getRandomColor = () => {
       let colorRandom;
@@ -93,43 +91,54 @@ class App extends Component {
         color = color.concat(colorHex);        
       }
 
-      color = '#'.concat(color); 
-      
-      //  console.log('get random');
-      //  console.log(color);
+      color = '#'.concat(color);   
       
       return color;
     }
   
-    applyHistoryColorHandler = (index, hColor) => {
-      this.setState({
-        selectedColor: {id: index, color: hColor}
-      });
+    applyHistoryColorHandler = (index, hColor) => {          
+      const newSwitch = !this.state.switch;
 
+      this.setState({
+        selectedColor: {id: index, color: hColor}, 
+        switch: newSwitch       
+      });     
     }
 
-    applyColorHandler = (selectedColor) => {
-      const index = selectedColor.id;
-      console.log(index);
-      console.log(selectedColor.color);
-      this.setState({
-        style: {
-          backgroundColor: selectedColor.color
-        }
-      });
+    applyColorHandler = (selectedColor) => {        
+
+      if (this.state.selectedColor.color !== null) {
+         this.setState({
+            style: {
+            backgroundColor: selectedColor.color
+            }
+          });
+      }
     }
 
     deleteColorHandler = (selectedColor) => {
       const index = selectedColor.id;
-      console.log(index);
-      console.log(selectedColor.color);
-      const newHistroyColors = [ ...this.state.historyColors];      
-      newHistroyColors.splice(index, 1);      
-      this.setState({
-        historyColors: newHistroyColors
-      });      
-    }
+      const newHistroyColors = [ ...this.state.historyColors];        
+
+      newHistroyColors.splice(index, 1);     
+
+      if (this.state.selectedColor.color !== null) {
+        if (newHistroyColors.length === 0) {
+          this.setState({
+            historyColors: newHistroyColors,
+            selectedColor: {id: null, color: null}, 
+            classColor: ['Btn', 'Btn-hidden']          
+          }); 
+        }
+        else {
+          this.setState({
+            historyColors: newHistroyColors,
+            selectedColor: {id: null, color: null}                    
+          });          
+        }  
+      }
     
+    }   
 
     welcomeHandler = (event) => {
       this.setState({
@@ -137,17 +146,22 @@ class App extends Component {
       });
     }
 
+
+
 render() {
   let history = <span>No History Colors</span>;
+  let btn = this.state.classColor;
 
   if (this.state.historyColors.length !== 0) {
-    history = this.state.historyColors.map((hColor, index) => {
-      return  <HistoryColors key={index} color={hColor} 
-      click={() => this.applyHistoryColorHandler(index, hColor)}
+    history = this.state.historyColors.map((hColor, index) => {     
+      return  <HistoryColors 
+        key={index} 
+        color={hColor} 
+        click={() => this.applyHistoryColorHandler(index, hColor)}
       />       
-    });
+    });    
   } 
-  
+ 
 
   return (
     <div className="App">
@@ -157,18 +171,21 @@ render() {
           click={this.changeColorHandler} />           
       </header>
 
-      {/* <div>      
+    <div>      
         <Welcome 
         name={this.state.name}
         change={this.welcomeHandler} />
-      </div> */}
+      </div> 
     
     <div>     
       <div className="History-colors">History Colors</div>  
       <div className="Btn-section"> 
      
-      <button className="Btn" onClick={() => this.applyColorHandler(this.state.selectedColor)}>Apply</button>  <button className="Btn" onClick={() => this.deleteColorHandler(this.state.selectedColor)}>Delete</button> 
+      <button className={btn.join(' ')} onClick={() => this.applyColorHandler(this.state.selectedColor)}>Apply</button>  
+
+      <button className={btn.join(' ')} onClick={() => this.deleteColorHandler(this.state.selectedColor)}>Delete</button> 
       </div>
+      
       <div className="Colors">    
         {history}
       </div>      
@@ -178,8 +195,7 @@ render() {
    
     </div>
     );
-}
-
+  }
 }
 
 export default App;
