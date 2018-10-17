@@ -8,7 +8,7 @@
     "react-dom": "^16.2.0",
     "react-scripts": "1.1.1"
   },
-  "homepage": "https://ljtdon.github.io/ReactApp_Colors",
+  "homepage": "https://github.com/ljtdon/ReactApp_Colors",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
