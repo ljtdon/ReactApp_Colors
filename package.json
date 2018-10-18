@@ -1,7 +1,7 @@
 {
   "name": "react-colors",
   "version": "0.1.0",
-  "homepage": "https://ljtdon.github.io/ReactColors",
+  "homepage": "https://ljtdon.github.io/ReactApp_Colors/build",
   "private": false,
   "dependencies": {
     "gh-pages": "^2.0.1",
